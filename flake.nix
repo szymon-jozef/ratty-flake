@@ -143,7 +143,7 @@
               };
 
               env = {
-                term = lib.mkOption {
+                TERM = lib.mkOption {
                   type = lib.types.str;
                   default = "xterm-256color";
                 };
@@ -182,7 +182,7 @@
                     type = lib.types.float;
                     default = 0.5;
                   };
-                  planeOffset = lib.mkOption {
+                  plane_offset = lib.mkOption {
                     type = lib.types.float;
                     default = 18.0;
                   };
