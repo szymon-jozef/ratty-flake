@@ -51,8 +51,12 @@
           default = pkgs.rustPlatform.buildRustPackage {
             pname = "ratty";
             meta = with pkgs.lib; {
-              license = licenses.mit;
-              platforms = platforms.linux;
+              description = "GPU-rendered terminal emulator with inline 3D graphics";
+              homepage = "https://ratty-term.org/";
+              downloadPage = "https://github.com/orhun/ratty";
+              changelog = "https://github.com/orhun/ratty/blob/main/CHANGELOG.md";
+              license = lib.licenses.mit;
+              platforms = lib.platforms.linux;
               mainProgram = "ratty";
             };
             version = "0-unstable-${builtins.substring 0 8 ratty.rev}";
