@@ -103,7 +103,7 @@
             enable = lib.mkEnableOption "ratty terminal emulator";
 
             package = lib.mkOption {
-              type = lib.types.package;
+              type = lib.types.nullOr lib.types.package;
               default = self.packages.${pkgs.system}.default;
             };
 
@@ -383,7 +383,7 @@
           };
 
           config = lib.mkIf cfg.enable {
-            home.packages = [ cfg.package ];
+            home.packages = lib.optional (cfg.package != null) [ cfg.package ];
             xdg.configFile."ratty/config.toml".source = fmt.generate "ratty.toml" {
               window = cfg.window;
               terminal = cfg.terminal;
@@ -409,6 +409,7 @@
               home.stateVersion = "23.11";
 
               programs.ratty.enable = true;
+              programs.ratty.package = null;
 
               programs.ratty.window.width = 1920;
               programs.ratty.theme.normal.red = "#ff0000";
